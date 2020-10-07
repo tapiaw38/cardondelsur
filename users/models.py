@@ -40,7 +40,7 @@ class User(CardonModel, AbstractUser):
 
     def get_short_name(self):
         """ Retorna el primer nombre. """
-        return self.first_name
+        return self.username
 
 
 class Profile(CardonModel):
@@ -70,7 +70,8 @@ class Profile(CardonModel):
         return str(self.user)
 
 class Offers(CardonModel):
-    '''Modelo ofertas de los comercios'''
+    '''Modelo ofertas de los comercios, 
+    icluye datos del perdil de los usuarios'''
 
     user = models.ForeignKey(User, related_name="related_users", on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, related_name='related_profiles', on_delete=models.CASCADE)

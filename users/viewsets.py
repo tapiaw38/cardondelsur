@@ -32,7 +32,7 @@ class ProfileViewset(viewsets.ReadOnlyModelViewSet):
             ''
         )
         return Profile.objects.filter(
-            phone_number__icontains = params
+            commerce_name__icontains = params
         )
 
 

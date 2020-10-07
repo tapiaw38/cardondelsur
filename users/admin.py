@@ -5,13 +5,13 @@ from users.models import User, Profile, Offers
 
 class CustomUserAdmin(UserAdmin):
     """ User model admin. """
-    list_display = ('email','username','first_name','is_staff','is_commerce')
+    list_display = ('email','username','first_name','is_staff','is_commerce', 'is_verfied')
     list_filter = ('is_commerce', 'is_staff','created','modified')
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     """ Profile model admin ."""
-    list_display = ('user','created')
+    list_display = ('user','commerce_name','phone_number','created')
     search_fields = ('user_username','user__email','user__first_name','user__last_name')
 
 

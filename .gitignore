@@ -1,0 +1,7 @@
+migrations
+__pycache__
+.vscode/
+env/
+media/
+db.sqlite3
+frontend

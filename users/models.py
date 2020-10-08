@@ -61,8 +61,8 @@ class Profile(CardonModel):
     )
     phone_number = models.CharField(validators=[phone_regex], max_length=10, blank=True, null=True)
 
-    lat_city = models.FloatField(blank=True, null=True)
-    lng_city = models.FloatField(blank=True, null=True)
+    city = models.CharField(max_length=50, blank=True, null=True)
+
     lat = models.FloatField(blank=True, null=True)
     lng = models.FloatField(blank=True, null=True)
 

@@ -43,6 +43,18 @@ class User(CardonModel, AbstractUser):
         return self.username
 
 
+class City(models.Model):
+    '''Modelo de ciudades Ciudades
+    registradas'''
+
+    name = models.CharField(max_length=100)
+    lat = models.FloatField()
+    lng = models.FloatField()
+
+    def __str__(self):
+        return self.name
+    
+
 class Profile(CardonModel):
     """ Modelo de perfil del usuario. 
     Perfil publico de cada usuario. """
@@ -61,13 +73,17 @@ class Profile(CardonModel):
     )
     phone_number = models.CharField(validators=[phone_regex], max_length=10, blank=True, null=True)
 
-    city = models.CharField(max_length=50, blank=True, null=True)
+    city = models.ForeignKey(City, related_name="city", on_delete=models.CASCADE)
 
     lat = models.FloatField(blank=True, null=True)
     lng = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return str(self.user)
+
+    @property
+    def my_city(self):
+        return str(self.city.name)
 
 class Offers(CardonModel):
     '''Modelo ofertas de los comercios, 

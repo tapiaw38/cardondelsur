@@ -2,8 +2,8 @@ from rest_framework import viewsets, generics
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from django.db.models import Prefetch
-from .models import Profile, Offers, User
-from .serializers import ProfileSerializer, OffserSerializer, UserSerializer
+from .models import Profile, Offers, User, City
+from .serializers import ProfileSerializer, OffserSerializer, UserSerializer, CitySerializer
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 100
@@ -46,3 +46,7 @@ class UserViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     pagination_class = StandardResultsSetPagination
+
+class CityViewset(viewsets.ReadOnlyModelViewSet):
+    queryset = City.objects.all()
+    serializer_class = CitySerializer

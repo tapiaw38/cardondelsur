@@ -1,6 +1,6 @@
 from rest_framework import serializers
 # import models
-from .models import Profile, Offers, User
+from .models import Profile, Offers, User, City
 # Serializers
 
 class OffserSerializer(serializers.ModelSerializer):
@@ -25,6 +25,14 @@ class OffserSerializer(serializers.ModelSerializer):
             'created',
         )
 
+class CitySerializer(serializers.ModelSerializer):
+    '''Clase cities serializars'''
+
+    class Meta:
+        model = City
+        fields = '__all__'
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     '''class profile serializer, includ model user'''
     user = serializers.CharField(source='user.username')
@@ -32,6 +40,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     is_commerce = serializers.BooleanField(source='user.is_commerce')
     last_name = serializers.CharField(source='user.last_name')
     #related_profiles = OffserSerializer(many=True)
+    city = CitySerializer()
     class Meta:
         model = Profile
         fields = (
@@ -43,9 +52,9 @@ class ProfileSerializer(serializers.ModelSerializer):
             'commerce_name',
             'picture',
             'phone_number',
-            'city',
             'lat',
             'lng',
+            'city',
             #'related_profiles',
         )
 
@@ -54,12 +63,18 @@ class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer()
     class Meta:
         model = User
-        fields = [
+        fields = (
             'username',
             'email',
             'password',
             'is_commerce',
             'profile',
-            ]
+        )
 
+class CitySerializer(serializers.ModelSerializer):
+    '''Serializer list all cities'''
 
+    class Meta:
+        model = City
+        fields = '__all__'
+        

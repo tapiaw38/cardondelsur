@@ -5,3 +5,4 @@ env/
 media/
 frontend
 db.sqlite3
+cardondelsur/settings.py

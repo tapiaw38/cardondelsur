@@ -2,4 +2,6 @@ migrations
 __pycache__
 .vscode/
 env/
+media/
 frontend
+db.sqlite3
